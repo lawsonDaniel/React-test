@@ -4,7 +4,13 @@ import Task from './Task'
 function Tasks({task}) {
   return (
     <div>
-        <Task />
+        {
+            task.map((tasks)=>{
+                return(
+                    <Task key={tasks.id} taskName={tasks.taskHeader} />
+                )
+            })
+        }
     </div>
   )
 }

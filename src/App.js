@@ -1,32 +1,20 @@
-import React from "react";
-import { useState } from "react";
+
 import Button from "./commponents/Button";
 import Header from "./commponents/Header";
-import Task from "./commponents/Task";
+import Tasks from "./commponents/Tasks";
 import TaskList from './task.json'
+import { useState } from 'react';
 
 
 function App() {
-
-  const getTaskList = ()=>{
-      TaskList.map((task)=>{
-        
-      })
-  }
-
-  const [tasks, settasks] = useState({
-    TaskList
-  });
-
-
-
+  const [task, setstate] = useState([...TaskList]);
   return (
     <div className="container">
        <div className="header">
         <Header />
        <Button color="red" text="Add" />
    </div>
-      <Task taskName={tasks.TaskList[0].id} />
+     <Tasks task={task}/>
     </div>
   );
 }

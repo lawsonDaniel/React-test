@@ -1,10 +1,11 @@
 import React from 'react'
+import {FaTimes} from 'react-icons/fa'
 
 function Task({taskName}) {
   return (
-        <>
-        <h3> {taskName}</h3>
-        </>
+        <div className='task'>
+        <h3>{taskName} <FaTimes style={{color:'red'}}/></h3>
+        </div>
   )
 }
 
