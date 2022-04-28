@@ -1,9 +1,14 @@
+import Button from "./Button";
+import Header from "./Header";
 
 function App() {
   return (
-   <>
-   <h1>hello</h1>
-   </>
+    <div className="container">
+       <div className="header">
+        <Header />
+       <Button color="red" text="Add" />
+   </div>
+    </div>
   );
 }
 
