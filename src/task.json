@@ -1,19 +1,24 @@
 [
     {
         "id":1,
-        "taskHeader":"my fist task"
+        "taskHeader":"my fist task",
+        "Reminder": true
 
     },
 
     {
         "id":2,
-        "taskHeader":"my second task"
+        "taskHeader":"my second task", 
+        "Reminder": false
+
 
     },
 
     {
         "id":3,
-        "taskHeader":"my third task"
+        "taskHeader":"my third task" ,
+        "Reminder": true
+
 
     }
 

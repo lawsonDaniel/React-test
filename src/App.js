@@ -7,14 +7,35 @@ import { useState } from 'react';
 
 
 function App() {
-  const [task, setstate] = useState([...TaskList]);
+  const [Task, setTask] = useState([...TaskList]);
+  const delect = (id)=>{
+      setTask(Task.filter((task)=>{
+          return(
+            task.id !== id
+          )
+      }))
+  }
+ 
+  //toggle remider
+  const toggleReminder = (id)=>{
+   setTask(
+     Task.map((task)=>{
+     return  task.id === id ? {...task,Reminder : !task.Reminder} : task
+     })
+   )
+  }
+
+  
+
   return (
     <div className="container">
        <div className="header">
         <Header />
        <Button color="red" text="Add" />
-   </div>
-     <Tasks task={task}/>
+   </div>{
+     Task.length > 0 ?  <Tasks  task={Task} onDelect={delect} onToggle={toggleReminder}  /> : 'You dont have any task left'
+   }
+    
     </div>
   );
 }
