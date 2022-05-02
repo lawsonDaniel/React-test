@@ -29,7 +29,13 @@ function App() {
   const showAddForm = ()=>{
     setToggler(!Toggler)
   }
-  
+  const AddTask = (task)=>{
+   const GenerateId =  Math.floor(Math.random()*100) +1
+  console.log(GenerateId)
+  const UpdatedTaskWithId = {GenerateId,...task}
+  setTask([...Task,UpdatedTaskWithId])
+ 
+  }
 
   return (
     <div className="container">
@@ -42,7 +48,7 @@ function App() {
      Task.length > 0 ?  <Tasks  task={Task} onDelect={delect} onToggle={toggleReminder}  /> : 'You dont have any task left'
    }
     {
-     Toggler ? <Addtask setTask={setTask} Task={Task} /> : null
+     Toggler ? <Addtask AddTask={AddTask} /> : null
     }
     </div>
   );

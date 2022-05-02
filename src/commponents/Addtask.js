@@ -1,20 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
 
-function Addtask({setTask,Task}) {
+function Addtask({AddTask}) {
 
-    const [FormTask, setFormTask] = useState('');
+    const [taskHeader, setFormTask] = useState('');
     const [FormTime, setFormTime] = useState('');
-    const [FormReminder, setFormReminder] = useState(false);
+    const [Reminder, setFormReminder] = useState(false);
 
 
     const onSubmit = (e)=>{
         e.preventDefault()
-        if(FormTask ==='' || FormTask === ''){
+        if(!taskHeader){
            return console.error('please FIll the provided fields for the task')
-        }else{
-           
         }
+        AddTask({taskHeader,FormTime,Reminder})
+        setFormTask('')
+        setFormTime('')
+        setFormReminder(false)
     }
 
 
@@ -22,7 +24,7 @@ function Addtask({setTask,Task}) {
    <form className='add-form'onSubmit={onSubmit}>
        <div className="form-control">
            <label htmlFor="">Task</label>
-           <input type="text" placeholder='Add Task' value={FormTask} onChange={(e)=>{
+           <input type="text" placeholder='Add Task' value={taskHeader} onChange={(e)=>{
                setFormTask(e.target.value)
            }} />
        </div>
@@ -34,8 +36,8 @@ function Addtask({setTask,Task}) {
        </div>
        <div className="form-control-check">
            <label htmlFor="">Set Reminder</label>
-           <input type="checkbox" value={FormReminder} onChange={(e)=>{
-               setFormReminder(e.currentTarget.checked)
+           <input type="checkbox" value={Reminder} checked={Reminder} onChange={(e)=>{
+               setFormReminder(e.currentTarget.checked) 
            }}/>
        </div>
        <input type="submit" value="Save Task"  className='btn btn-block'/>
