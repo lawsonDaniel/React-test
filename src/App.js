@@ -42,7 +42,7 @@ function App() {
      Task.length > 0 ?  <Tasks  task={Task} onDelect={delect} onToggle={toggleReminder}  /> : 'You dont have any task left'
    }
     {
-     Toggler ? <Addtask /> : null
+     Toggler ? <Addtask setTask={setTask} Task={Task} /> : null
     }
     </div>
   );
