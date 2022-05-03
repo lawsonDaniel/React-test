@@ -1,22 +1,26 @@
 import React from 'react'
 import { useState } from 'react';
 
-function Addtask({AddTask}) {
+function Addtask({AddTask,HideFormOnSubmit}) {
 
-    const [taskHeader, setFormTask] = useState('');
-    const [FormTime, setFormTime] = useState('');
-    const [Reminder, setFormReminder] = useState(false);
+    const [taskHeader, settaskHeader] = useState('');
+    const [date, setdate] = useState('');
+    const [Reminder, setReminder] = useState(false);
 
 
     const onSubmit = (e)=>{
         e.preventDefault()
-        if(!taskHeader){
-           return console.error('please FIll the provided fields for the task')
+        if(!taskHeader || !date ){
+           return alert('please FIll the provided fields for the task')
         }
-        AddTask({taskHeader,FormTime,Reminder})
-        setFormTask('')
-        setFormTime('')
-        setFormReminder(false)
+     //Processing form data
+        AddTask({taskHeader,date,Reminder})
+      //clearing the form after submission
+        settaskHeader('')
+        setdate('')
+        setReminder(false)
+      //hiding the form after submission
+        HideFormOnSubmit()
     }
 
 
@@ -25,19 +29,19 @@ function Addtask({AddTask}) {
        <div className="form-control">
            <label htmlFor="">Task</label>
            <input type="text" placeholder='Add Task' value={taskHeader} onChange={(e)=>{
-               setFormTask(e.target.value)
+               settaskHeader(e.target.value)
            }} />
        </div>
        <div className="form-control">
-           <label htmlFor="">Day & Time</label>
-           <input type="text" placeholder='Add Task' value={FormTime} onChange={(e)=>{
-               setFormTime(e.target.value)
+           <label htmlFor="">Date</label>
+           <input type="Date" placeholder='Add Task' value={date} onChange={(e)=>{
+               setdate(e.target.value)
            }} />
        </div>
        <div className="form-control-check">
            <label htmlFor="">Set Reminder</label>
            <input type="checkbox" value={Reminder} checked={Reminder} onChange={(e)=>{
-               setFormReminder(e.currentTarget.checked) 
+              setReminder(e.currentTarget.checked) 
            }}/>
        </div>
        <input type="submit" value="Save Task"  className='btn btn-block'/>

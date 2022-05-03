@@ -15,40 +15,47 @@ function App() {
           )
       }))
   }
- 
-  //toggle reminder
-  const toggleReminder = (id)=>{
-   setTask(
-     Task.map((task)=>{
-     return  task.id === id ? {...task,Reminder : !task.Reminder} : task
-     })
-   )
-  }
   
+//toggler to show form
   const [Toggler,setToggler] = useState(false)
   const showAddForm = ()=>{
     setToggler(!Toggler)
   }
+
   const AddTask = (task)=>{
-   const GenerateId =  Math.floor(Math.random()*100) +1
-  console.log(GenerateId)
-  const UpdatedTaskWithId = {GenerateId,...task}
+    //generate a task id
+   const id =  Math.floor(Math.random()*100) +1
+   //adding the generated id to the form data
+  const UpdatedTaskWithId = {id,...task}
+  // setting the task
+  console.log([...Task,UpdatedTaskWithId])
   setTask([...Task,UpdatedTaskWithId])
  
   }
+
+    //toggle reminder
+    const toggleReminder = (id)=>{
+      setTask(
+        Task.map((task)=>{
+        return  task.id === id ? {...task,Reminder : !task.Reminder} : task
+        })
+      )
+     }
 
   return (
     <div className="container">
        <div className="header">
         <Header />
-       <Button color="red" text="Add" onClick={showAddForm} />
+       {
+         Toggler ? null : <Button color="red" text="Add" onClick={showAddForm} />
+       }
    </div>
 
    {
-     Task.length > 0 ?  <Tasks  task={Task} onDelect={delect} onToggle={toggleReminder}  /> : 'You dont have any task left'
+     Task.length > 0 ?  <Tasks  task={Task} onDelect={delect} onToggleReminder={toggleReminder}  /> : 'You dont have any task left'
    }
     {
-     Toggler ? <Addtask AddTask={AddTask} /> : null
+     Toggler ? <Addtask AddTask={AddTask} HideFormOnSubmit={showAddForm} /> : null
     }
     </div>
   );
